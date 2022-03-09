@@ -10,6 +10,7 @@
 <script>
 import Quill from "quill";
 import quillBetterTable from "quill-better-table";
+import ImageFormat from "../utils/imageFormat";
 
 const AlignStyle = Quill.import("attributors/style/align");
 const fontSizeArr = [
@@ -29,7 +30,7 @@ const Size = Quill.import("attributors/style/size");
 Size.whitelist = fontSizeArr;
 Quill.register(AlignStyle, true);
 Quill.register(Size, true);
-// Quill.register(TableFormat, true);
+Quill.register(ImageFormat, true);
 Quill.register(
   {
     "modules/better-table": quillBetterTable,
@@ -40,10 +41,6 @@ export default {
   name: "FractalQuill",
   props: {
     value: {
-      type: String,
-      default: "",
-    },
-    content: {
       type: String,
       default: "",
     },
@@ -84,8 +81,8 @@ export default {
         },
       });
       this.table = this.quill.getModule("better-table");
-      if (this.value || this.content) {
-        this.quill.setText(this.value || this.content);
+      if (this.value || window.xprops.content) {
+        this.quill.setText(this.value || window.xprops.content);
       }
       this.quill.on("text-change", () => {
         let html = this.$refs.editor.children[0].innerHTML;
@@ -94,6 +91,7 @@ export default {
         if (html === "<p><br></p>") html = "";
         this.thecontent = html;
         this.$emit("input", this.thecontent);
+        window.xprops.setContent(this.thecontent);
         this.$emit("change", { html, text, quill });
       });
     },
