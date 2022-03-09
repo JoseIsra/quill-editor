@@ -61,7 +61,7 @@ export default {
     delete this.quill;
   },
   watch: {
-    zoidContentProp: {
+    "window.xprops.content": {
       handler: function (newVal) {
         if (this.quill) {
           if (newVal && newVal !== this.thecontent) {
