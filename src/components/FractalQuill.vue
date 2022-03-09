@@ -82,7 +82,8 @@ export default {
       });
       this.table = this.quill.getModule("better-table");
       if (this.value || window.xprops.content) {
-        this.quill.setText(this.value || window.xprops.content);
+        this.quill.root.innerHTML = window.xprops.content;
+        // (this.value || window.xprops.content);
       }
       this.quill.on("text-change", () => {
         let html = this.$refs.editor.children[0].innerHTML;

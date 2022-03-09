@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <fractal-quill />
-  </div>
+  <fractal-quill />
 </template>
 
 <script>
