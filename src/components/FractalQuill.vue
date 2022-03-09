@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{ zoidContentProp }}
     <button id="insert-table" class="btn" @click="table.insertTable(3, 3)">
       <i class="fas fa-table"></i>
     </button>
