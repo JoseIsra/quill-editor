@@ -50,13 +50,18 @@ export default {
       quill: null,
       table: null,
       thecontent: "",
+      zoidContentProp: window.xprops.content,
     };
   },
   mounted() {
     this.initQuill();
   },
+  beforeDestroy() {
+    this.quill = null;
+    delete this.quill;
+  },
   watch: {
-    "window.xprops.content"(newVal) {
+    zoidContentProp(newVal) {
       if (this.quill) {
         if (newVal && newVal !== this.thecontent) {
           this.thecontent = newVal;
@@ -93,8 +98,8 @@ export default {
         },
       });
       this.table = this.quill.getModule("better-table");
-      if (this.value || window.xprops.content) {
-        this.quill.root.innerHTML = window.xprops.content;
+      if (this.value || this.zoidContentProp) {
+        this.quill.root.innerHTML = this.zoidContentProp;
         // (this.value || window.xprops.content);
       }
       this.quill.on("text-change", () => {
