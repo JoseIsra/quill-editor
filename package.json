@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "quill": "2.0.0-dev.3",
+    "quill-better-table": "1.2.10",
     "vue": "^2.6.11",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "zoid": "^9.0.73"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.15",
