@@ -123,7 +123,7 @@ export default {
 
 .container {
   position: relative;
-  height: 600px;
+  height: 400px;
   .btn {
     position: absolute;
     right: 10px;
