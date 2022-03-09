@@ -55,6 +55,18 @@ export default {
   mounted() {
     this.initQuill();
   },
+  watch: {
+    "window.xprops.content"(newVal) {
+      if (this.quill) {
+        if (newVal && newVal !== this.thecontent) {
+          this.thecontent = newVal;
+          this.quill.root.innerHTML = newVal;
+        } else if (!newVal) {
+          this.quill.setText("");
+        }
+      }
+    },
+  },
   methods: {
     initQuill() {
       this.quill = new Quill(this.$refs.editor, {
