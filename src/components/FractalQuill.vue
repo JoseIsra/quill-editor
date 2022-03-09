@@ -62,7 +62,7 @@ export default {
     delete this.quill;
   },
   watch: {
-    zoidContentProp(newVal) {
+    " window.xprops.content"(newVal) {
       console.log(newVal);
       if (this.quill) {
         if (newVal && newVal !== this.thecontent) {
