@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    {{ window.xprops.content }}
+    {{ zoidContentProp }}
     <button id="insert-table" class="btn" @click="table.insertTable(3, 3)">
       <i class="fas fa-table"></i>
     </button>
@@ -63,6 +63,7 @@ export default {
   },
   watch: {
     zoidContentProp(newVal) {
+      console.log(newVal);
       if (this.quill) {
         if (newVal && newVal !== this.thecontent) {
           this.thecontent = newVal;
@@ -99,8 +100,8 @@ export default {
         },
       });
       this.table = this.quill.getModule("better-table");
-      if (this.value || this.zoidContentProp) {
-        this.quill.root.innerHTML = this.zoidContentProp;
+      if (this.value || window.xprops.content) {
+        this.quill.root.innerHTML = window.xprops.content;
         // (this.value || window.xprops.content);
       }
       this.quill.on("text-change", () => {
