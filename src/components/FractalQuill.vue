@@ -61,16 +61,18 @@ export default {
     delete this.quill;
   },
   watch: {
-    " window.xprops.content"(newVal) {
-      console.log("wath de zoid prop", newVal);
-      if (this.quill) {
-        if (newVal && newVal !== this.thecontent) {
-          this.thecontent = newVal;
-          this.quill.root.innerHTML = newVal;
-        } else if (!newVal) {
-          this.quill.setText("");
+    zoidContentProp: {
+      handler: function (newVal) {
+        if (this.quill) {
+          if (newVal && newVal !== this.thecontent) {
+            this.thecontent = newVal;
+            this.quill.root.innerHTML = newVal;
+          } else if (!newVal) {
+            this.quill.setText("");
+          }
         }
-      }
+      },
+      deep: true,
     },
   },
   methods: {
