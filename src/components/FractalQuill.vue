@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    {{ zoidContentProp }}
     <button id="insert-table" class="btn" @click="table.insertTable(3, 3)">
       <i class="fas fa-table"></i>
     </button>
@@ -63,7 +62,7 @@ export default {
   },
   watch: {
     " window.xprops.content"(newVal) {
-      console.log(newVal);
+      console.log("wath de zoid prop", newVal);
       if (this.quill) {
         if (newVal && newVal !== this.thecontent) {
           this.thecontent = newVal;
@@ -101,6 +100,7 @@ export default {
       });
       this.table = this.quill.getModule("better-table");
       if (this.value || window.xprops.content) {
+        console.log("init content in quill 👻");
         this.quill.root.innerHTML = window.xprops.content;
         // (this.value || window.xprops.content);
       }
